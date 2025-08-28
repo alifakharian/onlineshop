@@ -57,6 +57,9 @@ function Navbar() {
           <Link to="/Registerpage" className="hidden sm:block">
             ثبت نام
           </Link>
+            <Link to="/login" className="hidden sm:block">
+            ورود
+          </Link>
         </div>
 
         {/* منو در حالت موبایل (sm پایین‌تر) */}

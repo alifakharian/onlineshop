@@ -1,21 +1,27 @@
 import axiosInstance from "./axiosInstance";
-
-export const verifyUserCode = async (code: string) => {
-  const res = await axiosInstance.post("/accounts/register/verify/", { code });
+//  userphonenumber
+export const verifyUserCode = async (phone: string) => {
+  const res = await axiosInstance.post("/accounts/register/", { phone });
+  return res.data;
+};
+// userlogin
+export const login = async (phone: string, password: string) => {
+  const res = await axiosInstance.post("/accounts/api/token/", {
+    phone,
+    password,
+  });
   return res.data;
 };
 
-// export const verifyCode = async (payload: { phone: string; code: string }) => {
-//   const res = await axiosInstance.post("/accounts/register/verify/", payload);
-//   return res.data;
-// };
-
-// export const completeRegister = async (payload: {
-//   phone: string;
-//   username: string;
-//   email: string;
-//   password: string;
-// }) => {
-//   const res = await axiosInstance.post("/accounts/register/complete/", payload);
-//   return res.data;
-// };
+// userlogout
+export const logout = async () => {
+  try {
+    const res = await axiosInstance.post("/accounts/logout/", {
+      refresh: localStorage.getItem("refreshToken"),
+    });
+    console.log("server response:", res.data);
+    return res.data;
+  } catch (err) {
+    console.log("عدم موفقیت درخواست");
+  }
+};

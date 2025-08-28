@@ -11,7 +11,7 @@ module.exports = {
       lg: "992px",
       xl: "1200px",
       "2xl": "1400px",
-      "smd": "100px",
+      smd: "100px",
     },
     container: {
       center: true,
@@ -21,7 +21,7 @@ module.exports = {
     plugin(function ({ addComponents }) {
       addComponents({
         ".custom-input": {
-          "@apply bg-gray-200 text-center mt-2 rounded-lg h-[40px] p-2 border-2 focus:ring-[1.5px] focus:ring-rose-500  outline-none":
+          "@apply bg-gray-200 text-center mt-2 rounded-lg h-[40px] p-2 border-2 focus:ring-[1.5px] focus:ring-rose-500 dark:focus:ring-blue-700  outline-none":
             {},
         },
       });

@@ -1,11 +1,11 @@
 // http://localhost:8000/admin/login/?next=/admin/
 // http://localhost:8000//api/schema/swagger-ui/
-
+// baseURL: `${baseurl}`,
+// const baseurl = "http://localhost:8000";
 import axios from "axios";
-const baseurl = "http://localhost:8000";
 
 const axiosInstance = axios.create({
-  baseURL: `${baseurl}`,
+  baseURL: "/api", // همه درخواست‌ها به /api هدایت می‌شوند
   headers: {
     "Content-Type": "application/json",
   },

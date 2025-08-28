@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useVerifyUser } from "../../hooks/useRegisterUser";
+import {useVerifyUser } from "../../hooks/useRegisterUser";
 
 type FormValues = {
   phone: string;
@@ -9,6 +9,7 @@ type FormValues = {
   password: string;
   confirmPassword: string;
   code: string;
+  codeInput: string;
 };
 
 function Register() {
@@ -27,16 +28,22 @@ function Register() {
 
   const password = watch("password");
   const mutation = useVerifyUser();
+  // useVerifyOtp
+
 
   const checkPhoneNumber: SubmitHandler<FormValues> = (data) => {
-    mutation.mutate(data.phone);
+    mutation.mutate({ phone: data.phone});
     setPhone(data.phone);
     setPhonenumber(true);
   };
 
+  // const submitCode: SubmitHandler<FormValues> = (data) => {
+  //   setCode(data.code);
+  //   verifyoup.mutate({ phone, code: data.code });
+  //   setCheckCode(true);
+  // };
   const submitCode: SubmitHandler<FormValues> = (data) => {
-    setCode(data.code);
-    setCheckCode(true);
+   
   };
 
   const userInfo: SubmitHandler<FormValues> = (data) => {
