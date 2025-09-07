@@ -9,11 +9,11 @@ export default function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <React.StrictMode>
+        {/* <React.StrictMode> */}
           <Provider store={store}>
             <Wapper />
           </Provider>
-        </React.StrictMode>
+        {/* </React.StrictMode> */}
       </QueryClientProvider>
     </>
   );

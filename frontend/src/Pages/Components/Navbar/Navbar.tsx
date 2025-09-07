@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { RootState } from "../../redex/store";
 import { toggleDarkMode } from "../../redex/Darkmode";
 import { FaMoon, FaBars, FaTimes } from "react-icons/fa";
@@ -42,24 +42,47 @@ function Navbar() {
         <div className="hidden sm:flex flex-row-reverse mr-3 gap-4">
           {navs.map((elem) => (
             <div key={elem.link}>
-              <Link to={elem.link}>{elem.item}</Link>
+              <NavLink
+                to={elem.link}
+                className={({ isActive }) =>
+                  isActive
+                    ? "bg-red-600 text-[16px] duration-1000 dark:bg-gray-400 text-white rounded-md px-2 py-1"
+                    : "text-rose-600 block duration-1000  dark:text-white text-[16px]"
+                }
+              >
+                {elem.item}
+              </NavLink>
             </div>
           ))}
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex gap-4 ">
           <button
             onClick={() => dispatch(toggleDarkMode())}
-            className="bg-gray-500 duration-1000 text-yellow-500 dark:text-white  p-2 rounded-full"
+            className="text-slate-1000 duration-1000 text-[24px] dark:text-white  rounded-full"
           >
-            {darkMode ? <FaMoon /> : <BiSolidSun className="text-xl" />}
+            {darkMode ? <BiSolidSun /> : <FaMoon className="text-xl text-gray-600" />}
           </button>
-          <Link to="/Registerpage" className="hidden sm:block">
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "bg-red-600 text-[16px] duration-1000 dark:bg-gray-400 text-white rounded-md px-2 py-1"
+                : "text-rose-600 block duration-1000  dark:text-white text-[16px]"
+            }
+            to="/Registerpage"
+          >
             ثبت نام
-          </Link>
-            <Link to="/login" className="hidden sm:block">
+          </NavLink>
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? "bg-red-600 text-[16px] duration-1000 dark:bg-gray-400 text-white rounded-md px-2 py-1"
+                : "text-rose-600 duration-1000  dark:text-white text-[16px]"
+            }
+            to="/login"
+          >
             ورود
-          </Link>
+          </NavLink>
         </div>
 
         {/* منو در حالت موبایل (sm پایین‌تر) */}

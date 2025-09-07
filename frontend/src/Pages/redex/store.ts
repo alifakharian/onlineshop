@@ -1,12 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { Darkmode } from "./Darkmode";
 import { Register } from "./Register";
-
+import { Search } from "./Search";
 
 export const store = configureStore({
   reducer: {
     Darkmode: Darkmode.reducer,
     Register: Register.reducer,
+    Search: Search.reducer,
   },
 });
 export type RootState = ReturnType<typeof store.getState>;
