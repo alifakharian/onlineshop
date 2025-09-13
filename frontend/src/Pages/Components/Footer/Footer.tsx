@@ -11,7 +11,7 @@ function Footer() {
   return (
     <>
       <div
-        className="dark:bg-slate-800 text-gray-600 bg-gray-300 px-[50px] pb-5 dark:text-white pt-10"
+        className="dark:bg-slate-900 duration-700 text-gray-600 bg-gray-300 px-[50px] pb-5 dark:text-white pt-10"
         dir="rtl"
       >
         <div className="">

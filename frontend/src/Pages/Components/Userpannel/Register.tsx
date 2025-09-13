@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import {useVerifyUser } from "../../hooks/useRegisterUser";
+import { useVerifyUser } from "../../hooks/useRegisterUser";
 
 type FormValues = {
   phone: string;
@@ -11,42 +11,29 @@ type FormValues = {
   code: string;
   codeInput: string;
 };
-
+// useVerifyUser
 function Register() {
   const [phonenumber, setPhonenumber] = useState(false);
-  const [checkCode, setCheckCode] = useState(false);
+  const [checkCode] = useState(false);
 
   const [phone, setPhone] = useState("");
-  const [code, setCode] = useState("");
 
   const {
     register,
     handleSubmit,
-    watch,
+
     formState: { errors },
   } = useForm<FormValues>();
 
-  const password = watch("password");
   const mutation = useVerifyUser();
-  // useVerifyOtp
-
 
   const checkPhoneNumber: SubmitHandler<FormValues> = (data) => {
-    mutation.mutate({ phone: data.phone});
+    mutation.mutate({ phone: data.phone });
     setPhone(data.phone);
     setPhonenumber(true);
   };
 
-  // const submitCode: SubmitHandler<FormValues> = (data) => {
-  //   setCode(data.code);
-  //   verifyoup.mutate({ phone, code: data.code });
-  //   setCheckCode(true);
-  // };
   const submitCode: SubmitHandler<FormValues> = (data) => {
-   
-  };
-
-  const userInfo: SubmitHandler<FormValues> = (data) => {
     console.log(data);
   };
 
@@ -112,16 +99,25 @@ function Register() {
               </p>
             )}
             <button
-              className="bg-rose-600 dark:bg-blue-500 duration-700 hover:bg-rose-800 text-[15px] p-1 rounded-lg w-[50%] m-3 text-white"
+              className="bg-rose-600 outline-none dark:bg-blue-500 duration-700 hover:bg-rose-800 text-[15px] p-1 rounded-lg w-[50%] m-3 text-white"
               type="submit"
             >
               ارسال کد
             </button>
           </form>
         )}
+      </div>
+    </div>
+  );
+}
 
-        {/* فرم اطلاعات کاربری */}
-        {checkCode && (
+export default Register;
+
+{
+  /* فرم اطلاعات کاربری */
+}
+{
+  /* {checkCode && (
           <form
             onSubmit={handleSubmit(userInfo)}
             className="flex flex-col mt-3 mx-auto"
@@ -201,19 +197,7 @@ function Register() {
               ثبت
             </button>
 
-            {/* {isError && (
-              <p className="text-red-600 mt-2">
-                خطا در ثبت نام، دوباره تلاش کنید.
-              </p>
-            )}
-            {isSuccess && (
-              <p className="text-green-600 mt-2">ثبت نام با موفقیت انجام شد!</p>
-            )} */}
+          
           </form>
-        )}
-      </div>
-    </div>
-  );
+        )} */
 }
-
-export default Register;

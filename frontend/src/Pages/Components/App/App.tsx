@@ -11,7 +11,7 @@ export default function App() {
       <QueryClientProvider client={queryClient}>
         {/* <React.StrictMode> */}
           <Provider store={store}>
-            <Wapper />
+            <Wapper/>
           </Provider>
         {/* </React.StrictMode> */}
       </QueryClientProvider>

@@ -1,76 +1,56 @@
-// import React from "react";
-// import { Navigation } from "swiper/modules";
-// import { Swiper, SwiperSlide } from "swiper/react";
-// import "swiper/swiper-bundle.css";
-// import img1 from "../../../img/mainSlider/1.webp";
-// import img2 from "../../../img/mainSlider/2.webp";
-// import img3 from "../../../img/mainSlider/3.webp";
-// import img4 from "../../../img/mainSlider/4.webp";
-// import img5 from "../../../img/mainSlider/5.webp";
-// import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
-
-// const Mainslider: React.FC = () => {
-//   const img: string[] = [img1, img2, img3, img4, img5];
-
-//   return (
-//     <Swiper
-//       navigation={{ nextEl: ".custom-next", prevEl: ".custom-prev" }}
-//       modules={[Navigation]}
-//       className="mySwiper"
-//     >
-//       {img.map((elem, index) => (
-//         <SwiperSlide key={index}>
-//           <img src={elem} alt={`slide-${index}`} />
-//         </SwiperSlide>
-//       ))}
-//       <div className=" gap-1 flex top-[380px] z-30 left-5">
-//         <FaChevronCircleLeft  className="text-[28px] "/>
-//         <FaChevronCircleRight className="text-[28px] " />
-//       </div>
-//     </Swiper>
-//   );
-// };
-
-// export default Mainslider;
-
-import img1 from "../../../img/mainSlider/1.webp";
-import img2 from "../../../img/mainSlider/2.webp";
-import img3 from "../../../img/mainSlider/3.webp";
-import img4 from "../../../img/mainSlider/4.webp";
-import img5 from "../../../img/mainSlider/5.webp";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import "swiper/swiper-bundle.css";
+import { fistSlider } from "../../hooks/userbannerSlider";
+import Loading from "../Products/Loading";
+import { MdNavigateNext } from "react-icons/md";
+import { GrFormPrevious } from "react-icons/gr";
 
 function Mainslider() {
-  const img: string[] = [img1, img2, img3, img4, img5];
+  const { data, isLoading, isError } = fistSlider();
+  if (isLoading) return <Loading />;
+  if (isError) return <Loading />;
+
   return (
     <>
-      <>
+      <div className="relative">
         <Swiper
+          navigation={{
+            nextEl: ".next-custom",
+            prevEl: ".prev-custom",
+          }}
           pagination={{
             type: "progressbar",
           }}
-          navigation={true}
           modules={[Pagination, Navigation]}
           className="mySwiper"
         >
-          {img &&
-            img.map((elem, index) => {
-              return (
-                <div key={index}>
-                  <SwiperSlide>
-                    <img
-                      src={elem}
-                      className="w-full smd:h-[400px] object-cover"
-                    />
-                  </SwiperSlide>
-                </div>
-              );
-            })}
+          {data &&
+            data.map((elem) => (
+              <SwiperSlide key={elem.alt}>
+                <img
+                  src={elem.baner}
+                  className="w-full smd:h-[400px] object-cover"
+                />
+              </SwiperSlide>
+            ))}
         </Swiper>
-      </>
+
+        <div
+          className="prev-custom absolute font-black text-[30px] top-[45%] left-2 z-10 w-10 h-10 
+                   bg-rose-600 text-white rounded-full flex items-center justify-center cursor-pointer
+                    dark:bg-blue-600"
+        >
+          <GrFormPrevious />
+        </div>
+        <div
+          className="next-custom absolute top-[45%] text-[30px] right-2 z-10 w-10 h-10 
+                   bg-rose-600 text-white rounded-full flex items-center justify-center cursor-pointer
+                    dark:bg-blue-600"
+        >
+          <MdNavigateNext />
+        </div>
+      </div>
     </>
   );
 }

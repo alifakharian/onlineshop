@@ -5,10 +5,9 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "/api", // همه درخواست‌ها به /api هدایت می‌شوند
-  headers: {
-    "Content-Type": "application/json",
-  },
+  baseURL: "/api", // مسیر proxy Vite
+  withCredentials: true, // ارسال cookie/session
+  headers: { "Content-Type": "application/json" },
 });
 
 export default axiosInstance;

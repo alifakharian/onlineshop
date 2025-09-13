@@ -1,11 +1,12 @@
 import { FaSearch } from "react-icons/fa";
-import { SlBasket } from "react-icons/sl";
 import daylogo from "../../../Pages/image/logo/day.svg";
 import darkimg from "../../../Pages/image/logo/darkimg.png";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../redex/store";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useCart } from "../../hooks/useCart";
+import { MdOutlineAddShoppingCart } from "react-icons/md";
 
 interface FormValues {
   search: string;
@@ -13,7 +14,9 @@ interface FormValues {
 
 function Search() {
   const darkMode = useSelector((state: RootState) => state.Darkmode.value);
-  const dispatch = useDispatch();
+  const { getItems } = useCart();
+  const totalcaritem = getItems.data?.total_items;
+
   const { register, watch } = useForm<FormValues>();
 
   const navigate = useNavigate();
@@ -21,7 +24,7 @@ function Search() {
 
   return (
     <>
-      <div className="flex justify-between dark:bg-slate-800 duration-700 flex-row-reverse p-2">
+      <div className="flex justify-between dark:bg-slate-800 bg-gray-200 border-2 border-rose-200 rounded-md dark:border-none duration-700 flex-row-reverse p-2">
         <img src={darkMode ? darkimg : daylogo} />
 
         <div className="relative w-[30%]">
@@ -47,7 +50,14 @@ function Search() {
             <FaSearch />
           </button>
         </div>
-        <SlBasket className="text-rose-600 font-bold text-[20px] dark:text-gray-200 ml-3 mt-2" />
+        <Link to="/Cartitem" className="required:">
+          <MdOutlineAddShoppingCart className="text-rose-600  font-extrabold text-[35px] dark:text-gray-200 ml-3 mt-2" />
+          {totalcaritem && totalcaritem > 0 ? (
+            <div className="absolute duration-700 top-[75px] left-[35px] bg-red-600 dark:bg-blue-700 text-white rounded-full w-[24px] h-[22px] text-[11px] pl-[7px]  pt-[4px]">
+              {totalcaritem}
+            </div>
+          ) : null}
+        </Link>
       </div>
     </>
   );

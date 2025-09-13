@@ -4,7 +4,7 @@ const Category: React.FC = () => {
   const { data } = useProducts();
 
   return (
-    <div className="dark:bg-slate-700 dark:text-white">
+    <div className="dark:bg-slate-800 p-3 dark:text-white">
       <h1 className="text-center text-gray-800 dark:text-white   font-black py-5">
         دسته بندی های پربازدید
       </h1>

@@ -9,9 +9,10 @@ function Slider() {
 
   return (
     <>
-      <div className=" bg-gray-200 dark:bg-slate-600">
+      <div className=" bg-gray-200 dark:bg-slate-900">
         <Swiper
           slidesPerView={1}
+          loop={true}
           // navigation={true}
           spaceBetween={40}
           pagination={{ clickable: true }}

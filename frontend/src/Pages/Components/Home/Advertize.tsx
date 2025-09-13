@@ -1,14 +1,22 @@
-import img1 from "../../../Pages/image/adver/1.webp";
-import img2 from "../../../Pages/image/adver/2.webp";
-import img3 from "../../../Pages/image/adver/3.webp";
+import { adver } from "../../hooks/userbannerSlider";
+import Loading from "../Products/Loading";
 
 function Advertize() {
+  const { data, isLoading } = adver();
+  if (isLoading) {
+    return <Loading />;
+  }
   return (
     <>
-      <div className="grid lg:grid-cols-3 grid-cols-1 gap-5 p-3 dark:bg-slate-900 ">
-        <img src={img1} className="rounded-lg" />
-        <img src={img2} className="rounded-lg" />
-        <img src={img3} className="rounded-lg" />
+      <div className="grid lg:grid-cols-3 grid-cols-1 gap-5 p-[40px] dark:bg-slate-800 ">
+        {data &&
+          data.map((elem) => {
+            return (
+              <div key={elem.alt}>
+                <img src={elem.baner} className="rounded-lg" />
+              </div>
+            );
+          })}
       </div>
     </>
   );
